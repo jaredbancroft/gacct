@@ -55,9 +55,8 @@ func searchFile(path string, term string) result {
 		if len(lines) == linesChunkLen || !willScan {
 			toProcess := lines
 			wg.Add(len(toProcess))
-			process := lines
 			go func() {
-				for _, text := range process {
+				for _, text := range toProcess {
 					e := entry{wg: &wg}
 					acctEntry := strings.Split(text, ":")
 					if len(acctEntry) > 1 {
